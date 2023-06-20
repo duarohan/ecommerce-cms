@@ -23,6 +23,7 @@ require('apostrophe')({
     'default-page': {},
     product: {},
     'product-page': {},
-    'product-widget': {}
+    'product-widget': {},
+    category: {}
   }
 });
