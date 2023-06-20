@@ -7,6 +7,7 @@ module.exports = {
       main: {
         type: 'area',
         options: {
+          expanded: true,
           widgets: {
             '@apostrophecms/rich-text': {
               toolbar: [
@@ -36,7 +37,8 @@ module.exports = {
               ]
             },
             '@apostrophecms/image': {},
-            '@apostrophecms/video': {}
+            '@apostrophecms/video': {},
+            product: {}
           }
         }
       }

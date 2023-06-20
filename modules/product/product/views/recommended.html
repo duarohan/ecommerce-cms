@@ -1,0 +1,18 @@
+<h2>Products recommended within {{data.price}}</h2>
+{% if data.products.length %}
+  {% for product in data.products %}
+    <div >
+      {% if not product._url %}
+          <p class="meta purple">
+            <em>You will need to publish an product Index page for product links to work.</em>
+          </p>
+      {% endif %}
+      <h3><a href="{{ product._url }}">{{ product.title }}</a></h3>
+      <article>
+           <p>{{ product.description }}</p>
+      </article>
+    </div>
+  {% endfor %}
+{% else %}
+  <p>There are no products yet. Try adding one.</p>
+{% endif %}

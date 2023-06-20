@@ -1,10 +1,5 @@
-{#
-  This is an example home page template. It inherits and extends a layout template
-  that lives in the top-level views/ folder for convenience
-#}
-
+{% import '@apostrophecms/pager:macros.html' as pager with context %}
 {% extends "layout.html" %}
-
 {% block beforeMain %}
 <div>
   <header>
@@ -25,12 +20,16 @@
 {% endblock %}
 
 {% block main %}
-  <section class="bp-welcome">
-    <h1 class="bp-welcome__headline">
-      E-Commerce Platform
-    </h1>
-    
-    {% area data.page, 'main' %}
-    </div>
-  </section>
+<section>
+    {% for product in data.pieces %}
+        <div >
+            {{ product.title }} {{ product.price }} <a href="{{ product._url }}">More Info</a>
+        </div>
+    {% endfor %}
+</section>
+{{ pager.render({
+  page: data.currentPage,
+  total: data.totalPages
+}, data.url) }}
+
 {% endblock %}
