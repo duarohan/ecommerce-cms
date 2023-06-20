@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+{% block beforeMain %}
+<div>
+  <header>
+    <nav>
+      <ul>
+        <li>
+          <a href="/">Home</a>
+        </li>
+        {% for page in data.home._children %}
+          <li>
+            <a href="{{ page._url }}">{{ page.title }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    </nav>
+  </header>
+  <main>
+{% endblock %}
+
+
+{% block main %}
+<section>
+  <p>Product Name - {{data.piece.title}}</p>
+  <p>Categories: -  {{ data.piece._categories[0].title }}</p>
+  <p>Price - {{data.piece.price}}</p>
+  <p>Brand - {{data.piece.brand}}</p>
+  <p>Color - {{data.piece.color}}</p>
+  <p>Size - {{data.piece.size}}</p>
+</section>  
+<section>
+    <p>Description:</p> {{ data.piece.description  }}
+  </section>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% import '@apostrophecms/pager:macros.html' as pager with context %}
+{% extends "layout.html" %}
+{% block beforeMain %}
+<div>
+  <header>
+    <nav>
+      <ul>
+        <li>
+          <a href="/">Home</a>
+        </li>
+        {% for page in data.home._children %}
+          <li>
+            <a href="{{ page._url }}">{{ page.title }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    </nav>
+  </header>
+  <main>
+{% endblock %}
+
+{% block main %}
+<section>
+    {% for product in data.pieces %}
+        <div >
+            {{ product.title }} {{ product.price }} <a href="{{ product._url }}">More Info</a>
+        </div>
+    {% endfor %}
+</section>
+{{ pager.render({
+  page: data.currentPage,
+  total: data.totalPages
+}, data.url) }}
+
+{% endblock %}
