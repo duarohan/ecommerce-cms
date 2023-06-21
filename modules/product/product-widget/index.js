@@ -10,12 +10,7 @@ module.exports = {
       category: {
         type: 'select',
         label: 'Category',
-        choices: [
-          {
-            label: 'Electronics',
-            value: 'clj43s8260007s4u51070bh1b'
-          }
-        ]
+        choices: 'getCategories'
       },
       price: {
         type: 'select',
@@ -36,5 +31,23 @@ module.exports = {
         ]
       }
     }
+  },
+  methods(self) {
+    return {
+      async getCategories(req) {
+        const categories = await self.apos.modules.category.find(req).project({
+          title: 1,
+          _id: 1
+        }).toArray();
+        const choices = [];
+        categories.forEach(el => {
+          choices.push({
+            label: el.title,
+            value: (el._id).replace(/:en:(draft|published)/, '')
+          });
+        });
+        return choices;
+      }
+    };
   }
 };
