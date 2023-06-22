@@ -24,6 +24,7 @@ require('apostrophe')({
     product: {},
     'product-page': {},
     'product-widget': {},
-    category: {}
+    category: {},
+    'category-page': {}
   }
 });

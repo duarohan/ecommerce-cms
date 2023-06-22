@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+{% block beforeMain %}
+<div>
+  <header>
+    <nav>
+      <ul>
+        <li>
+          <a href="/">Home</a>
+        </li>
+        {% for page in data.home._children %}
+          <li>
+            <a href="{{ page._url }}">{{ page.title }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    </nav>
+  </header>
+  <main>
+{% endblock %}
+
+
+{% block main %}
+<section>
+  <p>Products:</p>
+  <ul>
+    {% for product in data.piece._products %}
+    <div >
+      {{ product.title }} {{ product.price }} <a href="{{ product._url }}">More Info</a>
+    </div>
+    {% endfor %}
+  </ul>
+ 
+</section>  
+
+{% endblock %}
