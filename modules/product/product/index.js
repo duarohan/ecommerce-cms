@@ -20,6 +20,10 @@ module.exports = {
         withType: 'category',
         max: 1
       },
+      launchDate: {
+        type: 'date',
+        label: 'Launch Date'
+      },
       price: {
         type: 'integer',
         label: 'price'
@@ -49,7 +53,7 @@ module.exports = {
     group: {
       general: {
         label: 'General',
-        fields: [ 'name', 'description', 'price', 'image' ]
+        fields: [ 'name', 'description', 'price', 'image', 'launchDate' ]
       },
       details: {
         label: 'Details',
@@ -59,6 +63,19 @@ module.exports = {
         label: 'Attributes',
         fields: [ 'color', 'size' ]
       }
+    }
+  },
+  columns: {
+    add: {
+      lastPublishedAt: {
+        label: 'Published',
+        component: 'AposCellDate'
+      },
+      launchDate: {
+        label: 'Launch Date',
+        component: 'AposCellDate'
+      }
+
     }
   },
   components(self) {

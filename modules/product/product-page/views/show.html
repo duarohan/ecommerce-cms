@@ -23,6 +23,7 @@
 <section>
   <p>Product Name - {{data.piece.title}}</p>
   <p>Categories: -  {{ data.piece._categories[0].title }}</p>
+  <p>Launched At: -  {{ data.piece.launchDate | date(data.global.dateFormat)}}</p>
   <p>Price - {{data.piece.price}}</p>
   <p>Brand - {{data.piece.brand}}</p>
   <p>Color - {{data.piece.color}}</p>
