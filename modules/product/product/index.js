@@ -69,9 +69,11 @@ module.exports = {
           categoriesIds: category,
           price: { $lte: parseFloat(price) }
         }).limit(5).sort({ createdAt: -1 }).toArray();
+        const categoryTitle = products[0]._categories[0].title;
         return {
           products,
-          price
+          price,
+          categoryTitle
         };
       }
     };
