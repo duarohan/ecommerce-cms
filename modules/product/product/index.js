@@ -1,7 +1,15 @@
 module.exports = {
   extend: '@apostrophecms/piece-type',
   options: {
-    label: 'Product'
+    label: 'Product',
+    publicApiProjection: {
+      title: 1,
+      slug: 1,
+      _url: 1,
+      _categories: 1,
+      main: 1,
+      thumbnail: 1
+    }
   },
   fields: {
     add: {
