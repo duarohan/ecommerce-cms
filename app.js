@@ -3,6 +3,7 @@ require('apostrophe')({
   nestedModuleSubdirs: true,
   modules: {
     localization: {},
+    '@apostrophecms/seo': {},
     '@apostrophecms/rich-text-widget': {
       options: {
         className: 'bp-rich-text'
