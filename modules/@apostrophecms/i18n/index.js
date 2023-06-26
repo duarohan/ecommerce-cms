@@ -7,6 +7,10 @@ module.exports = {
       fr: {
         label: 'French',
         prefix: '/fr'
+      },
+      es: {
+        label: 'Spanish',
+        prefix: '/es'
       }
     }
   }

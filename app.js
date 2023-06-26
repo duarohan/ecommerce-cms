@@ -2,6 +2,7 @@ require('apostrophe')({
   shortName: 'ecommerce-cms',
   nestedModuleSubdirs: true,
   modules: {
+    localization: {},
     '@apostrophecms/rich-text-widget': {
       options: {
         className: 'bp-rich-text'
