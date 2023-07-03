@@ -86,6 +86,14 @@ module.exports = {
 
     }
   },
+  filters: {
+    add: {
+      belowAverage: {
+        label: 'belowAverage'
+      }
+    },
+    remove: [ 'archived', 'visibility' ]
+  },
   components(self) {
     return {
       async recommended(req, data) {
@@ -100,6 +108,62 @@ module.exports = {
           price,
           categoryTitle
         };
+      }
+    };
+  },
+  methods(self) {
+    return {
+      async averagePrice(req) {
+        let sum = 0;
+        const products = await self.find(req).toArray();
+        if (!products.length) {
+          return 0;
+        }
+        for (const product of products) {
+          sum += product.price;
+        }
+        return sum / products.length;
+      }
+    };
+  },
+  queries(self, query) {
+    return {
+      builders: {
+        // This builder can be used to filter products in a query like this one:
+        // await self.apos.product.find(req, {}).belowAverage(true).toArray();
+        belowAverage: {
+          def: false,
+          async finalize() {
+            // Make sure this filter was actually invoked first
+            if (query.get('belowAverage')) {
+              const average = await self.averagePrice(query.req);
+
+              query.and({
+                price: { $lt: average }
+              });
+            }
+          },
+          // The builder can also be invoked via the module's REST API as a
+          // query string parameter, e.g. `?belowAverage=1`. Use the launder
+          // utility to ensure the proper data format for the database request.
+          launder(value) {
+            return self.apos.launder.boolean(value);
+          },
+          // Always provides these two choices when requested, even if no docs
+          // match either value.
+          choices() {
+            return [
+              {
+                value: '0',
+                label: 'No'
+              },
+              {
+                value: '1',
+                label: 'Yes'
+              }
+            ];
+          }
+        }
       }
     };
   }
