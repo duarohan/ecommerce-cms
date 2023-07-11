@@ -5,6 +5,25 @@
 
 {% extends "layout.html" %}
 
+{% block beforeMain %}
+<div>
+  <header>
+    <nav>
+      <ul>
+        <li>
+          <a href="/">Home</a>
+        </li>
+        {% for page in data.page._children %}
+          <li>
+            <a href="{{ page._url }}">{{ page.title }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    </nav>
+  </header>
+  <main>
+{% endblock %}
+
 {% block main %}
   <section class="bp-content">
     <h1>{{ data.page.title }}</h1>
